@@ -57,3 +57,4 @@
     { pulse-id: uint }
     {
         sender: principal,
+        recipient: principal,
