@@ -48,6 +48,9 @@
 ;; Total value transferred through the protocol
 (define-data-var total-volume uint u0)
 
+;; Total fees accumulated by the platform
+(define-data-var platform-fees uint u0)
+
 ;; ============================================================
 ;; DATA MAPS
 ;; ============================================================
@@ -60,3 +63,6 @@
         recipient: principal,
         amount: uint,
         message: (string-utf8 280),
+        pulse-height: uint
+    }
+)
