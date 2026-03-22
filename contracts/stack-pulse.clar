@@ -170,3 +170,10 @@
         })
 
         (ok current-id)
+
+;; ============================================================
+;; READ-ONLY FUNCTIONS
+;; ============================================================
+
+;; Retrieve a specific pulse
+(define-read-only (get-pulse (pulse-id uint))
