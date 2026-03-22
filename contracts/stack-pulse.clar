@@ -150,3 +150,6 @@
         ;; Update global stats
         (var-set total-pulses (+ current-id u1))
         (var-set total-volume (+ (var-get total-volume) amount))
+
+        ;; Only count fee if actually charged
+        (var-set platform-fees
