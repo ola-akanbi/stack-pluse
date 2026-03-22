@@ -44,3 +44,6 @@
 
 ;; Total number of pulses (tips) sent
 (define-data-var total-pulses uint u0)
+
+; Total value transferred through the protocol
+(define-data-var total-volume uint u0)
