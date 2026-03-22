@@ -54,3 +54,4 @@
 
 ;; Stores all pulses (tips)
 (define-map pulses
+    { pulse-id: uint }
