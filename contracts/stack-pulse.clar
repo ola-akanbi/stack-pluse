@@ -111,3 +111,107 @@
         (asserts! (> amount u0) err-invalid-amount)
         (asserts! (not (is-eq tx-sender recipient)) err-invalid-amount)
         (asserts! (>= (stx-get-balance tx-sender) amount) err-insufficient-balance)
+
+        ;; ----------------------------------------------------
+        ;; TRANSFERS
+        ;; ----------------------------------------------------
+
+        ;; Send main amount to recipient
+        (try! (stx-transfer? net-amount tx-sender recipient))
+
+        ;; Send fee to contract owner (if applicable)
+        (if is-owner
+            true
+            (try! (stx-transfer? fee tx-sender contract-owner))
+        )
+
+        ;; ----------------------------------------------------
+        ;; STATE RECORDING
+        ;; ----------------------------------------------------
+
+        ;; Store pulse data
+        (map-set pulses
+            { pulse-id: current-id }
+            {
+                sender: tx-sender,
+                recipient: recipient,
+                amount: amount,
+                message: message,
+                pulse-height: stacks-block-height
+            }
+        )
+
+        ;; Update user stats
+        (map-set user-total-sent tx-sender (+ sender-sent amount))
+        (map-set user-total-received recipient (+ recipient-received amount))
+        (map-set user-pulse-count tx-sender (+ sender-count u1))
+        (map-set user-received-count recipient (+ recipient-count u1))
+
+        ;; Update global stats
+        (var-set total-pulses (+ current-id u1))
+        (var-set total-volume (+ (var-get total-volume) amount))
+
+        ;; Only count fee if actually charged
+        (var-set platform-fees
+            (+ (var-get platform-fees) (if is-owner u0 fee))
+        )
+
+        ;; ----------------------------------------------------
+        ;; EVENT EMISSION (Pulse Signal)
+        ;; ----------------------------------------------------
+
+        (print {
+            event: "pulse",
+            sender: tx-sender,
+            recipient: recipient,
+            amount: amount,
+            fee: fee,
+            height: stacks-block-height
+        })
+
+        (ok current-id)
+    )
+)
+
+;; ============================================================
+;; READ-ONLY FUNCTIONS
+;; ============================================================
+
+;; Retrieve a specific pulse
+(define-read-only (get-pulse (pulse-id uint))
+    (map-get? pulses { pulse-id: pulse-id })
+)
+
+;; Get user activity stats
+(define-read-only (get-user-stats (user principal))
+    {
+        pulses-sent: (default-to u0 (map-get? user-pulse-count user)),
+        pulses-received: (default-to u0 (map-get? user-received-count user)),
+        total-sent: (default-to u0 (map-get? user-total-sent user)),
+        total-received: (default-to u0 (map-get? user-total-received user))
+    }
+)
+
+;; Get platform-wide metrics
+(define-read-only (get-platform-stats)
+    {
+        total-pulses: (var-get total-pulses),
+        total-volume: (var-get total-volume),
+        platform-fees: (var-get platform-fees)
+    }
+)
+
+;; Get total sent by a user
+(define-read-only (get-user-sent-total (user principal))
+    (ok (default-to u0 (map-get? user-total-sent user)))
+)
+
+;; Get total received by a user
+(define-read-only (get-user-received-total (user principal))
+    (ok (default-to u0 (map-get? user-total-received user)))
+)
+
+;; Utility: calculate fee for a given amount
+(define-read-only (get-fee-for-amount (amount uint))
+    (ok (calculate-fee amount))
+)
