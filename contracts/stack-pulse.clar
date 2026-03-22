@@ -198,3 +198,5 @@
         platform-fees: (var-get platform-fees)
     }
 )
+;; Get total sent by a user
+(define-read-only (get-user-sent-total (user principal))
