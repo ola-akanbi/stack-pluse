@@ -109,3 +109,4 @@
         ;; ----------------------------------------------------
 
         (asserts! (> amount u0) err-invalid-amount)
+        (asserts! (not (is-eq tx-sender recipient)) err-invalid-amount)
