@@ -153,3 +153,5 @@
 
         ;; Only count fee if actually charged
         (var-set platform-fees
+            (+ (var-get platform-fees) (if is-owner u0 fee))
+        )
