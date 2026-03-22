@@ -122,7 +122,7 @@
         ;; Send fee to contract owner (if applicable)
         (if is-owner
             true
-              (try! (stx-transfer? fee tx-sender contract-owner))
+            (try! (stx-transfer? fee tx-sender contract-owner))
         )
 
         ;; ----------------------------------------------------
@@ -170,6 +170,8 @@
         })
 
         (ok current-id)
+    )
+)
 
 ;; ============================================================
 ;; READ-ONLY FUNCTIONS
@@ -180,7 +182,7 @@
     (map-get? pulses { pulse-id: pulse-id })
 )
 
-; Get user activity stats
+;; Get user activity stats
 (define-read-only (get-user-stats (user principal))
     {
         pulses-sent: (default-to u0 (map-get? user-pulse-count user)),
@@ -198,10 +200,18 @@
         platform-fees: (var-get platform-fees)
     }
 )
+
 ;; Get total sent by a user
 (define-read-only (get-user-sent-total (user principal))
-(ok (default-to u0 (map-get? user-total-received user)))
+    (ok (default-to u0 (map-get? user-total-sent user)))
+)
+
+;; Get total received by a user
+(define-read-only (get-user-received-total (user principal))
+    (ok (default-to u0 (map-get? user-total-received user)))
 )
 
 ;; Utility: calculate fee for a given amount
 (define-read-only (get-fee-for-amount (amount uint))
+    (ok (calculate-fee amount))
+)
