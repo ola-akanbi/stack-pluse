@@ -133,6 +133,8 @@
         (map-set pulses
             { pulse-id: current-id }
 
+                sender: tx-sender,
+
         ;; Update user stats
         (map-set user-total-sent tx-sender (+ sender-sent amount))
         (map-set user-total-received recipient (+ recipient-received amount))
