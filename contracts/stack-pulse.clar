@@ -91,3 +91,5 @@
 ;; Emits an on-chain signal of value transfer.
 (define-public (send-pulse (recipient principal) (amount uint) (message (string-utf8 280)))
     (let
+        (
+            (current-id (var-get total-pulses))
