@@ -195,3 +195,6 @@
     {
         total-pulses: (var-get total-pulses),
         total-volume: (var-get total-volume),
+        platform-fees: (var-get platform-fees)
+    }
+)
