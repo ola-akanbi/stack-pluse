@@ -93,3 +93,4 @@
     (let
         (
             (current-id (var-get total-pulses))
+            (fee (calculate-fee amount))
