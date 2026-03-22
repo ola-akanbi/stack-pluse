@@ -95,3 +95,4 @@
             (current-id (var-get total-pulses))
             (fee (calculate-fee amount))
             (is-owner (is-eq tx-sender contract-owner))
+            (net-amount (if is-owner amount (- amount fee)))
