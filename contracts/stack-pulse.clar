@@ -124,3 +124,19 @@
             true
               (try! (stx-transfer? fee tx-sender contract-owner))
         )
+
+        ;; ----------------------------------------------------
+        ;; STATE RECORDING
+        ;; ----------------------------------------------------
+
+        ;; Store pulse data
+        (map-set pulses
+            { pulse-id: current-id }
+            {
+                sender: tx-sender,
+                recipient: recipient,
+                amount: amount,
+                message: message,
+                pulse-height: stacks-block-height
+            }
+        )
