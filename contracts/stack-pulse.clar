@@ -135,6 +135,7 @@
 
                 sender: tx-sender,
                 recipient: recipient,
+                message: message,
 
         ;; Update user stats
         (map-set user-total-sent tx-sender (+ sender-sent amount))
