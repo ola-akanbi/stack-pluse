@@ -129,14 +129,5 @@
         ;; STATE RECORDING
         ;; ----------------------------------------------------
 
-        ;; Store pulse data
-        (map-set pulses
-            { pulse-id: current-id }
-            {
-                sender: tx-sender,
-                recipient: recipient,
-                amount: amount,
-                message: message,
-                pulse-height: stacks-block-height
-            }
-        )
+        ;; Update user stats
+        (map-set user-total-sent tx-sender (+ sender-sent amount))
