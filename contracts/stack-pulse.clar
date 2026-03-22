@@ -155,3 +155,9 @@
         (var-set platform-fees
             (+ (var-get platform-fees) (if is-owner u0 fee))
         )
+
+        ;; ----------------------------------------------------
+        ;; EVENT EMISSION (Pulse Signal)
+        ;; ----------------------------------------------------
+
+        (print {
