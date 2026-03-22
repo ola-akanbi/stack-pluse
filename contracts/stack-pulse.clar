@@ -182,3 +182,5 @@
 
 ; Get user activity stats
 (define-read-only (get-user-stats (user principal))
+    {
+        pulses-sent: (default-to u0 (map-get? user-pulse-count user)),
