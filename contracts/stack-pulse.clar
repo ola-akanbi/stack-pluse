@@ -131,6 +131,7 @@
 
         ;; Store pulse data
         (map-set pulses
+            { pulse-id: current-id }
 
         ;; Update user stats
         (map-set user-total-sent tx-sender (+ sender-sent amount))
