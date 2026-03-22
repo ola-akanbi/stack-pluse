@@ -59,3 +59,4 @@
         sender: principal,
         recipient: principal,
         amount: uint,
+        message: (string-utf8 280),
