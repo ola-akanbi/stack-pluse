@@ -177,3 +177,5 @@
 
 ;; Retrieve a specific pulse
 (define-read-only (get-pulse (pulse-id uint))
+    (map-get? pulses { pulse-id: pulse-id })
+)
