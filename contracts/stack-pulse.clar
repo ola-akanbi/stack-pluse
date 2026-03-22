@@ -168,3 +168,5 @@
             fee: fee,
             height: stacks-block-height
         })
+
+        (ok current-id)
