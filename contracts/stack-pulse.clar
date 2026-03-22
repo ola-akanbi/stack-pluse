@@ -166,3 +166,5 @@
             recipient: recipient,
             amount: amount,
             fee: fee,
+            height: stacks-block-height
+        })
