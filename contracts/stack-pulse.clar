@@ -122,3 +122,5 @@
         ;; Send fee to contract owner (if applicable)
         (if is-owner
             true
+              (try! (stx-transfer? fee tx-sender contract-owner))
+        )
