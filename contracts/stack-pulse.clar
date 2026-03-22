@@ -81,3 +81,12 @@
 (define-private (calculate-fee (amount uint))
     (/ (* amount fee-basis-points) basis-points-divisor)
 )
+
+;; ============================================================
+;; PUBLIC FUNCTIONS
+;; ============================================================
+
+;; send-pulse
+;; Sends a micro-tip ("pulse") to another user with an optional message.
+;; Emits an on-chain signal of value transfer.
+(define-public (send-pulse (recipient principal) (amount uint) (message (string-utf8 280)))
