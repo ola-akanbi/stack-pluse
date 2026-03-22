@@ -103,3 +103,9 @@
             (sender-count (default-to u0 (map-get? user-pulse-count tx-sender)))
             (recipient-count (default-to u0 (map-get? user-received-count recipient)))
         )
+
+        ;; ----------------------------------------------------
+        ;; VALIDATION
+        ;; ----------------------------------------------------
+
+        (asserts! (> amount u0) err-invalid-amount)
