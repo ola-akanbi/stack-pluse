@@ -186,3 +186,6 @@
         pulses-sent: (default-to u0 (map-get? user-pulse-count user)),
         pulses-received: (default-to u0 (map-get? user-received-count user)),
         total-sent: (default-to u0 (map-get? user-total-sent user)),
+        total-received: (default-to u0 (map-get? user-total-received user))
+    }
+)
