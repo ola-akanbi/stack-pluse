@@ -66,3 +66,6 @@
         pulse-height: uint
     }
 )
+
+;; User activity tracking
+(define-map user-pulse-count principal uint)
