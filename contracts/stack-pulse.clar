@@ -192,3 +192,5 @@
 
 ;; Get platform-wide metrics
 (define-read-only (get-platform-stats)
+    {
+        total-pulses: (var-get total-pulses),
