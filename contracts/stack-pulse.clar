@@ -118,3 +118,6 @@
 
         ;; Send main amount to recipient
         (try! (stx-transfer? net-amount tx-sender recipient))
+
+        ;; Send fee to contract owner (if applicable)
+        (if is-owner
