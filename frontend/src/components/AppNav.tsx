@@ -17,3 +17,7 @@ const NAV_ITEMS = [
   { to: '/pulse', label: 'Lookup', icon: Search },
   { to: '/settings', label: 'Settings', icon: Settings },
 ];
+
+export function AppNav() {
+  const { pathname } = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
