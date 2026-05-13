@@ -9,3 +9,10 @@ import { CommandPalette } from './CommandPalette';
 
 export function AppLayout() {
   const location = useLocation();
+
+  return (
+    <NotificationProvider>
+      <AppLayoutInner location={location} />
+    </NotificationProvider>
+  );
+}
