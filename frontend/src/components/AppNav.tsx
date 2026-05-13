@@ -67,3 +67,11 @@ export function AppNav() {
             </div>
           </SheetContent>
         </Sheet>
+
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2 font-display text-lg text-foreground">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+            <Zap className="h-4 w-4 text-primary-foreground" />
+          </div>
+          <span className="hidden sm:inline">StackPulse</span>
+        </Link>
