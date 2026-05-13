@@ -19,3 +19,19 @@ export function AppLayout() {
 
 function AppLayoutInner({ location }: { location: ReturnType<typeof useLocation> }) {
   usePulseNotifications();
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col">
+      <AppNav />
+      <CommandPalette />
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6">
+        <AnimatePresence mode="wait">
+          <PageTransition key={location.pathname}>
+            <Outlet />
+          </PageTransition>
+        </AnimatePresence>
+      </main>
+      <Footer />
+    </div>
+  );
+}
