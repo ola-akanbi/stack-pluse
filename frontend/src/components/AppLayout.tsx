@@ -16,3 +16,6 @@ export function AppLayout() {
     </NotificationProvider>
   );
 }
+
+function AppLayoutInner({ location }: { location: ReturnType<typeof useLocation> }) {
+  usePulseNotifications();
