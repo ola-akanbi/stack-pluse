@@ -97,3 +97,14 @@ export function AppNav() {
             );
           })}
         </nav>
+
+        <div className="ml-auto flex items-center gap-2">
+          <NotificationPanel />
+          <ThemeToggle />
+          <NetworkBadge className="hidden sm:inline-flex" />
+          <WalletButton />
+        </div>
+      </div>
+    </header>
+  );
+}
