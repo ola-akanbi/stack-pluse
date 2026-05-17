@@ -32,3 +32,8 @@ export function CommandPalette() {
     document.addEventListener('keydown', down);
     return () => document.removeEventListener('keydown', down);
   }, []);
+
+  const handleSelect = (to: string) => {
+    setOpen(false);
+    navigate(to);
+  };
