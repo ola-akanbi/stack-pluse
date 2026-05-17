@@ -62,8 +62,7 @@ export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparklin
         'relative rounded-lg bg-card p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group border border-border/50',
         className
       )}
-
-      >
+    >
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-transparent pointer-events-none" />
       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary/40 to-primary/0 rounded-l-lg" />
@@ -82,10 +81,40 @@ export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparklin
               </span>
             )}
           </div>
-          </div>
+        </div>
         {Icon && (
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
             <Icon className="h-5 w-5" />
           </div>
         )}
       </div>
+
+      {/* Sparkline with tooltip */}
+      {chartData && chartData.length > 0 && (
+        <div className="relative mt-3 h-10 -mx-1">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={chartData}>
+              <defs>
+                <linearGradient id={`spark-${label}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.25} />
+                  <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <RechartsTooltip
+                content={<SparklineTooltipContent />}
+                cursor={{ stroke: 'hsl(var(--primary))', strokeWidth: 1, strokeDasharray: '3 3' }}
+              />
+              <Area
+                type="monotone"
+                dataKey="v"
+                stroke="hsl(var(--primary))"
+                strokeWidth={1.5}
+                fill={`url(#spark-${label})`}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+    </motion.div>
+  );
+}
