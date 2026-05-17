@@ -73,3 +73,12 @@ export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparklin
           <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</p>
           <p className="mt-2 text-3xl font-bold tabular-nums text-card-foreground">
             <AnimatedValue value={value} />
+          </p>
+          <div className="mt-1 flex items-center gap-2">
+            {sublabel && <span className="text-xs text-muted-foreground">{sublabel}</span>}
+            {trend && (
+              <span className={cn('text-xs font-medium', trend.positive ? 'text-success' : 'text-destructive')}>
+                {trend.positive ? '↑' : '↓'} {trend.value}
+              </span>
+            )}
+          </div>
