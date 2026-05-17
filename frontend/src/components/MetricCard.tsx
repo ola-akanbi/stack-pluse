@@ -13,3 +13,6 @@ interface MetricCardProps {
   sparkline?: number[];
   className?: string;
 }
+
+function AnimatedValue({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
