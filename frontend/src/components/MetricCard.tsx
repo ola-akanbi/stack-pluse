@@ -39,3 +39,12 @@ function AnimatedValue({ value }: { value: string }) {
 
   return <span ref={ref}>{value}</span>;
 }
+
+function SparklineTooltipContent({ active, payload }: any) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="rounded-md bg-popover px-2.5 py-1.5 text-xs text-popover-foreground shadow-md border border-border">
+      <span className="font-medium tabular-nums">{payload[0].value}</span>
+    </div>
+  );
+}
