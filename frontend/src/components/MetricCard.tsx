@@ -51,3 +51,14 @@ function SparklineTooltipContent({ active, payload }: any) {
 
 export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparkline, className }: MetricCardProps) {
   const chartData = sparkline?.map((v, i) => ({ i, v }));
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      whileHover={{ y: -2 }}
+      className={cn(
+        'relative rounded-lg bg-card p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group border border-border/50',
+        className
+      )}
