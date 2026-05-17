@@ -36,3 +36,6 @@ function AnimatedValue({ value }: { value: string }) {
     });
     return () => controls.stop();
   }, [value]);
+
+  return <span ref={ref}>{value}</span>;
+}
