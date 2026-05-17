@@ -62,3 +62,8 @@ export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparklin
         'relative rounded-lg bg-card p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group border border-border/50',
         className
       )}
+
+      >
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary/40 to-primary/0 rounded-l-lg" />
