@@ -67,3 +67,9 @@ export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparklin
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-transparent pointer-events-none" />
       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary/40 to-primary/0 rounded-l-lg" />
+
+      <div className="relative flex items-start justify-between">
+        <div className="flex-1">
+          <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</p>
+          <p className="mt-2 text-3xl font-bold tabular-nums text-card-foreground">
+            <AnimatedValue value={value} />
