@@ -48,3 +48,6 @@ function SparklineTooltipContent({ active, payload }: any) {
     </div>
   );
 }
+
+export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparkline, className }: MetricCardProps) {
+  const chartData = sparkline?.map((v, i) => ({ i, v }));
