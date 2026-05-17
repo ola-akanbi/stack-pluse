@@ -82,3 +82,10 @@ export function MetricCard({ label, value, sublabel, trend, icon: Icon, sparklin
               </span>
             )}
           </div>
+          </div>
+        {Icon && (
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+            <Icon className="h-5 w-5" />
+          </div>
+        )}
+      </div>
