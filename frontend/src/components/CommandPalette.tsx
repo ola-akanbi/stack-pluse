@@ -29,4 +29,6 @@ export function CommandPalette() {
         setOpen(prev => !prev);
       }
     };
-    
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
+  }, []);
