@@ -18,3 +18,7 @@ const PAGES = [
   { to: '/pulse', label: 'Pulse Lookup', icon: Zap, keywords: 'transaction find id' },
   { to: '/settings', label: 'Settings', icon: Settings, keywords: 'preferences config network theme' },
 ];
+
+export function CommandPalette() {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
