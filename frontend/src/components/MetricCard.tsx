@@ -16,3 +16,23 @@ interface MetricCardProps {
 
 function AnimatedValue({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const numMatch = value.match(/^([\d,.]+)/);
+    if (!numMatch || !ref.current) return;
+    const target = parseFloat(numMatch[1].replace(/,/g, ''));
+    if (isNaN(target)) return;
+    const suffix = value.slice(numMatch[1].length);
+    const controls = animate(0, target, {
+      duration: 1.2,
+      ease: 'easeOut',
+      onUpdate(v) {
+        if (!ref.current) return;
+        const formatted = target >= 1000
+          ? v.toLocaleString(undefined, { maximumFractionDigits: target % 1 === 0 ? 0 : 2 })
+          : v.toFixed(target % 1 === 0 ? 0 : 2);
+        ref.current.textContent = formatted + suffix;
+      },
+    });
+    return () => controls.stop();
+  }, [value]);
