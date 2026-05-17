@@ -37,3 +37,17 @@ export function CommandPalette() {
     setOpen(false);
     navigate(to);
   };
+
+  return (
+    <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandInput placeholder="Type a page name to navigate..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Pages">
+          {PAGES.map(({ to, label, icon: Icon, keywords }) => (
+            <CommandItem
+              key={to}
+              value={`${label} ${keywords}`}
+              onSelect={() => handleSelect(to)}
+              className="cursor-pointer"
+            ></CommandItem>
