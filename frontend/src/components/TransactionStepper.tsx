@@ -10,3 +10,13 @@ const STEPS: { key: TxLifecycleState; label: string }[] = [
   { key: 'pending', label: 'Pending' },
   { key: 'confirmed', label: 'Confirmed' },
 ];
+
+const ORDER: Record<TxLifecycleState, number> = {
+  draft: 0,
+  ready: 1,
+  'wallet-approval': 2,
+  broadcasted: 3,
+  pending: 4,
+  confirmed: 5,
+  failed: -1,
+};
