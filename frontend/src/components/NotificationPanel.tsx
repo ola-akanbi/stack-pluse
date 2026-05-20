@@ -69,3 +69,17 @@ function NotificationList({ notifications, onClear }: { notifications: Notificat
       )}
     </Button>
   );
+
+  if (isMobile) {
+    return (
+      <Sheet open={open} onOpenChange={handleOpen}>
+        <SheetTrigger asChild>{triggerButton}</SheetTrigger>
+        <SheetContent side="right" className="w-80 p-0">
+          <SheetHeader className="border-b border-border px-4 py-4">
+            <SheetTitle className="text-base">Notifications</SheetTitle>
+          </SheetHeader>
+          <NotificationList notifications={notifications} onClear={() => { clearAll(); setOpen(false); }} />
+        </SheetContent>
+      </Sheet>
+    );
+  }
