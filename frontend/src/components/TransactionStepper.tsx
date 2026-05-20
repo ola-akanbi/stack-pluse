@@ -20,3 +20,8 @@ const ORDER: Record<TxLifecycleState, number> = {
   confirmed: 5,
   failed: -1,
 };
+
+interface TransactionStepperProps {
+  currentState: TxLifecycleState;
+  className?: string;
+}
