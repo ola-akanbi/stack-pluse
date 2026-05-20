@@ -57,3 +57,11 @@ export function TransactionStepper({ currentState, className }: TransactionStepp
                   isFailed && 'bg-destructive text-destructive-foreground',
                   !isCompleted && !isCurrent && !isFailed && 'bg-muted text-muted-foreground'
                 )}
+                >
+                {isCompleted ? <Check className="h-3.5 w-3.5" /> : null}
+                {isCurrent ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
+                {isFailed ? <X className="h-3.5 w-3.5" /> : null}
+                {!isCompleted && !isCurrent && !isFailed ? i + 1 : null}
+              </div>
+              <span className="text-[10px] text-muted-foreground whitespace-nowrap">{step.label}</span>
+            </div>
