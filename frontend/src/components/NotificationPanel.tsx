@@ -26,3 +26,25 @@ function NotificationList({ notifications, onClear }: { notifications: Notificat
       </div>
     );
   }
+
+  return (
+    <div className="flex flex-col">
+      <ScrollArea className="max-h-80">
+        <div className="divide-y divide-border">
+          {notifications.map(n => (
+            <div key={n.id} className="flex items-start gap-3 px-4 py-3 hover:bg-muted/50 transition-colors">
+              <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                <Zap className="h-3.5 w-3.5 text-primary" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-foreground">
+                  {truncateAddress(n.sender)} sent {n.amount} STX
+                </p>
+                <p className="text-xs text-muted-foreground truncate">{n.message}</p>
+                <p className="text-[10px] text-muted-foreground/60 mt-0.5">{timeAgo(n.timestamp)}</p>
+              </div>
+              {!n.read && <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />}
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
