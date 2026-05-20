@@ -37,4 +37,11 @@ export function TransactionStepper({ currentState, className }: TransactionStepp
       aria-valuenow={currentIdx}
       aria-valuemax={5}
       aria-label={`Transaction status: ${currentState}`}
-    ></div>
+    >
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        Transaction step: {currentState.replace('-', ' ')}
+      </div>
+      {STEPS.map((step, i) => {
+        const isCompleted = !failed && currentIdx > i;
+        const isCurrent = !failed && currentIdx === i;
+        const isFailed = failed && i === 4;
