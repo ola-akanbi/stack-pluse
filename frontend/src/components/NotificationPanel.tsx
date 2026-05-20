@@ -48,8 +48,16 @@ function NotificationList({ notifications, onClear }: { notifications: Notificat
           ))}
         </div>
       </ScrollArea>
+      <div className="border-t border-border p-2">
+        <Button variant="ghost" size="sm" className="w-full text-xs text-muted-foreground" onClick={onClear}>
+          <Trash2 className="h-3 w-3 mr-1" /> Clear all
+        </Button>
+      </div>
+    </div>
+  );
+}
 
-  export function NotificationPanel() {
+export function NotificationPanel() {
   const { notifications, unreadCount, markAllRead, clearAll } = useNotificationStore();
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
@@ -83,3 +91,16 @@ function NotificationList({ notifications, onClear }: { notifications: Notificat
       </Sheet>
     );
   }
+
+  return (
+    <Popover open={open} onOpenChange={handleOpen}>
+      <PopoverTrigger asChild>{triggerButton}</PopoverTrigger>
+      <PopoverContent align="end" className="w-80 p-0">
+        <div className="border-b border-border px-4 py-3">
+          <h3 className="text-sm font-semibold text-foreground">Notifications</h3>
+        </div>
+        <NotificationList notifications={notifications} onClear={() => { clearAll(); setOpen(false); }} />
+      </PopoverContent>
+    </Popover>
+  );
+}
