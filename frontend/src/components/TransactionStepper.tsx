@@ -25,3 +25,7 @@ interface TransactionStepperProps {
   currentState: TxLifecycleState;
   className?: string;
 }
+
+export function TransactionStepper({ currentState, className }: TransactionStepperProps) {
+  const failed = currentState === 'failed';
+  const currentIdx = failed ? 5 : ORDER[currentState];
