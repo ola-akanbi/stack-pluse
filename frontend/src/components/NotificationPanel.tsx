@@ -15,3 +15,14 @@ function timeAgo(ts: number): string {
   if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
   return `${Math.floor(diff / 86400)}d ago`;
 }
+
+function NotificationList({ notifications, onClear }: { notifications: NotificationItem[]; onClear: () => void }) {
+  if (notifications.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+        <Bell className="h-8 w-8 mb-2 opacity-40" />
+        <p className="text-sm">No notifications yet</p>
+        <p className="text-xs">Incoming pulses will appear here</p>
+      </div>
+    );
+  }
