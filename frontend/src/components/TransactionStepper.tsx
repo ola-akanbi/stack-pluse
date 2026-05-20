@@ -46,7 +46,7 @@ export function TransactionStepper({ currentState, className }: TransactionStepp
         const isCurrent = !failed && currentIdx === i;
         const isFailed = failed && i === 4;
 
-      return (
+        return (
           <div key={step.key} className="flex items-center gap-1">
             <div className="flex flex-col items-center gap-1">
               <div
@@ -57,7 +57,7 @@ export function TransactionStepper({ currentState, className }: TransactionStepp
                   isFailed && 'bg-destructive text-destructive-foreground',
                   !isCompleted && !isCurrent && !isFailed && 'bg-muted text-muted-foreground'
                 )}
-                >
+              >
                 {isCompleted ? <Check className="h-3.5 w-3.5" /> : null}
                 {isCurrent ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
                 {isFailed ? <X className="h-3.5 w-3.5" /> : null}
@@ -65,3 +65,17 @@ export function TransactionStepper({ currentState, className }: TransactionStepp
               </div>
               <span className="text-[10px] text-muted-foreground whitespace-nowrap">{step.label}</span>
             </div>
+            {i < STEPS.length - 1 && (
+              <div
+                className={cn(
+                  'h-0.5 w-4 mb-4 rounded-full transition-colors duration-300',
+                  isCompleted ? 'bg-success' : 'bg-muted'
+                )}
+              />
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
