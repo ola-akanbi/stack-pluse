@@ -48,3 +48,13 @@ function NotificationList({ notifications, onClear }: { notifications: Notificat
           ))}
         </div>
       </ScrollArea>
+
+  export function NotificationPanel() {
+  const { notifications, unreadCount, markAllRead, clearAll } = useNotificationStore();
+  const isMobile = useIsMobile();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = (isOpen: boolean) => {
+    setOpen(isOpen);
+    if (isOpen) markAllRead();
+  };
