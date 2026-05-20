@@ -14,3 +14,9 @@ export function NetworkBadge({ className }: { className?: string }) {
           : 'bg-success/15 text-success',
         className
       )}
+    >
+      <span className={cn('h-1.5 w-1.5 rounded-full', isTestnet ? 'bg-warning' : 'bg-success')} />
+      {isTestnet ? 'Testnet' : 'Mainnet'}
+    </span>
+  );
+}
