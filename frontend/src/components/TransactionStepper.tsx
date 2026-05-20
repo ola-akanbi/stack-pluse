@@ -45,3 +45,15 @@ export function TransactionStepper({ currentState, className }: TransactionStepp
         const isCompleted = !failed && currentIdx > i;
         const isCurrent = !failed && currentIdx === i;
         const isFailed = failed && i === 4;
+
+      return (
+          <div key={step.key} className="flex items-center gap-1">
+            <div className="flex flex-col items-center gap-1">
+              <div
+                className={cn(
+                  'flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold transition-all duration-300',
+                  isCompleted && 'bg-success text-success-foreground scale-100',
+                  isCurrent && 'bg-primary text-primary-foreground ring-2 ring-primary/30 scale-110',
+                  isFailed && 'bg-destructive text-destructive-foreground',
+                  !isCompleted && !isCurrent && !isFailed && 'bg-muted text-muted-foreground'
+                )}
