@@ -29,3 +29,12 @@ interface TransactionStepperProps {
 export function TransactionStepper({ currentState, className }: TransactionStepperProps) {
   const failed = currentState === 'failed';
   const currentIdx = failed ? 5 : ORDER[currentState];
+
+  return (
+    <div
+      className={cn('flex items-center gap-1', className)}
+      role="progressbar"
+      aria-valuenow={currentIdx}
+      aria-valuemax={5}
+      aria-label={`Transaction status: ${currentState}`}
+    ></div>
